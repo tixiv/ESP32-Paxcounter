@@ -1,9 +1,10 @@
 # ESP32-Paxcounter
 **Wifi & Bluetooth driven, LoRaWAN enabled, battery powered mini Paxcounter built on cheap ESP32 LoRa IoT boards**
 
+Hi! We are TTN-Emscher-Lippe. Our plan is to integrate the Sensors: SHT31 and SPS30
+
 Tutorial (in german language): https://www.heise.de/select/make/2019/1/1551099236518668
 
-**#36C3 attendees: i am on site (27th - 30th)! You might contact me via twitter @RecumbentTravel**
 
 <img src="img/Paxcounter-title.jpg">
 <img src="img/Paxcounter-ttgo.jpg">
