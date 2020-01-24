@@ -15,6 +15,8 @@
 //#define HAS_BMP180
 //#define BMP180_ADDR 0x77
 
+#define HAS_SPS30 GPIO_NUM_4, GPIO_NUM_15 // SDA, SCL
+
 #define HAS_LORA 1       // comment out if device shall not send data via LoRa
 #define CFG_sx1276_radio 1
 
