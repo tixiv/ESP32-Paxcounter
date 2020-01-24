@@ -11,6 +11,7 @@
 #define BME_IRQ 0x080
 #define MATRIX_DISPLAY_IRQ 0x100
 #define PMU_IRQ 0x200
+#define SPS30_IRQ 0x400
 
 #include "globals.h"
 #include "cyclic.h"

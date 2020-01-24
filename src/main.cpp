@@ -75,6 +75,7 @@ triggers pps 1 sec impulse
 
 // Basic Config
 #include "main.h"
+#include "sensirion_sps30.h"
 
 configData_t cfg; // struct holds current device configuration
 char lmic_event_msg[LMIC_EVENTMSG_LEN]; // display buffer for LMIC event message
@@ -401,6 +402,8 @@ void setup() {
   if (bme_init())
     ESP_LOGI(TAG, "Starting BME sensor...");
 #endif
+
+  sps30_init();
 
   // starting timers and interrupts
   assert(irqHandlerTask != NULL); // has interrupt handler task started?

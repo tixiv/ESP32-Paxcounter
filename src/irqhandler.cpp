@@ -1,4 +1,5 @@
 #include "irqhandler.h"
+#include "sensirion_sps30.h"
 
 // Local logging tag
 static const char TAG[] = __FILE__;
@@ -82,6 +83,11 @@ void irqHandler(void *pvParameters) {
       InterruptStatus &= ~PMU_IRQ;
     }
 #endif
+
+    if (InterruptStatus & SPS30_IRQ) {
+      sps30_update();
+      InterruptStatus &= ~SPS30_IRQ;
+    }  
 
     // is time to send the payload?
     if (InterruptStatus & SENDCYCLE_IRQ) {
