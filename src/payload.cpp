@@ -1,5 +1,6 @@
 #include "globals.h"
 #include "payload.h"
+#include "sensirion_sps30.h"
 
 PayloadConvert::PayloadConvert(uint8_t size) {
   buffer = (uint8_t *)malloc(size);
@@ -229,6 +230,20 @@ void PayloadConvert::addButton(uint8_t value) {
 void PayloadConvert::addTime(time_t value) {
   uint32_t time = (uint32_t)value;
   writeUint32(time);
+}
+
+void PayloadConvert::addSPS30(const SPS30_Data &d)
+{
+  writeUFloat(d.mass_concentration.PM_1_0);
+  writeUFloat(d.mass_concentration.PM_2_5);
+  writeUFloat(d.mass_concentration.PM_4_0);
+  writeUFloat(d.mass_concentration.PM_10_0);
+
+  writeUFloat(d.number_concentration.PM_0_5);
+  writeUFloat(d.number_concentration.PM_1_0);
+  writeUFloat(d.number_concentration.PM_2_5);
+  writeUFloat(d.number_concentration.PM_4_0);
+  writeUFloat(d.number_concentration.PM_10_0);
 }
 
 void PayloadConvert::uintToBytes(uint64_t value, uint8_t byteSize) {

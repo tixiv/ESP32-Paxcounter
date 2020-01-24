@@ -34,6 +34,8 @@
 
 #endif
 
+class SPS30_Data;
+
 class PayloadConvert {
 
 public:
@@ -55,6 +57,7 @@ public:
   void addButton(uint8_t value);
   void addSensor(uint8_t[]);
   void addTime(time_t value);
+  void addSPS30(const SPS30_Data &d);
 
 #if (PAYLOAD_ENCODER == 1) // format plain
 

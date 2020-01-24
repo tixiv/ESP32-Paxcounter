@@ -30,6 +30,7 @@
 #define SENSOR2_DATA (0x20)
 #define SENSOR3_DATA (0x40)
 #define BATT_DATA (0x80)
+#define SPS30_DATA (0x100)
 
 // bits in configmask for device runmode control
 #define GPS_MODE (0x01)

@@ -1,5 +1,6 @@
 // Basic Config
 #include "senddata.h"
+#include "sensirion_sps30.h"
 
 Ticker sendcycler;
 
@@ -61,8 +62,8 @@ void SendPayload(uint8_t port, sendprio_t prio) {
 // interrupt triggered function to prepare payload to send
 void sendData() {
 
-  uint8_t bitmask = cfg.payloadmask;
-  uint8_t mask = 1;
+  uint32_t bitmask = cfg.payloadmask | SPS30_DATA;
+  uint32_t mask = 1;
   #if (HAS_GPS) 
   gpsStatus_t gps_status;
   #endif
@@ -155,6 +156,14 @@ void sendData() {
       payload.reset();
       payload.addVoltage(read_voltage());
       SendPayload(BATTPORT, prio_normal);
+      break;
+#endif
+
+#ifdef HAS_SPS30
+    case SPS30_DATA:
+      payload.reset();
+      payload.addSPS30(current_SPS30_data);
+      SendPayload(SPS30PORT, prio_normal);
       break;
 #endif
 

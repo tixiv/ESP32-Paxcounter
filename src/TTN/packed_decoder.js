@@ -91,6 +91,10 @@ function Decoder(bytes, port) {
         }
     }
 
+    if (port === 13) {
+        return decode(bytes, [ufloat, ufloat, ufloat, ufloat, ufloat, ufloat, ufloat, ufloat],
+            ['m_PM1.0', 'm_PM2.5', 'm_PM4.0', 'm_PM10.0', 'c_PM0.5', 'c_PM1.0', 'c_PM2.5', 'c_PM4.0', 'c_PM10.0']);
+    }
 }
 
 

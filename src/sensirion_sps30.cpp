@@ -7,6 +7,8 @@
 
 SPS30 Sensor;
 
+SPS30_Data current_SPS30_data;
+
 // Local logging tag
 static const char TAG[] = __FILE__;
 
@@ -27,6 +29,7 @@ void sps30_init()
         // Set the SPS30 to clean itself every 302,400 seconds (3.5 days, 84 hours)
         Sensor.setCleaningInterval(302400);
 
+        Wire.begin(HAS_SPS30);
         I2C_MUTEX_UNLOCK(); // release i2c bus access
     }
 
@@ -47,6 +50,17 @@ void sps30_update()
             float num_concen[5];
             Sensor.getNum(num_concen);
 
+            current_SPS30_data.mass_concentration.PM_1_0  = mass_concen[0];
+            current_SPS30_data.mass_concentration.PM_2_5  = mass_concen[1];
+            current_SPS30_data.mass_concentration.PM_4_0  = mass_concen[2];
+            current_SPS30_data.mass_concentration.PM_10_0 = mass_concen[3];
+
+            current_SPS30_data.number_concentration.PM_0_5 = num_concen[0];
+            current_SPS30_data.number_concentration.PM_1_0 = num_concen[1];
+            current_SPS30_data.number_concentration.PM_2_5 = num_concen[2];
+            current_SPS30_data.number_concentration.PM_4_0 = num_concen[3];
+            current_SPS30_data.number_concentration.PM_10_0 = num_concen[4];
+
             char *pm[5] = {"PM0.5", "PM1.0", "PM2.5", "PM4.0", "PM10"};
 
             ESP_LOGI(TAG, "--- Mass Concentration ---");
@@ -64,6 +78,7 @@ void sps30_update()
             }
         }
 
+        Wire.begin(HAS_SPS30);
         I2C_MUTEX_UNLOCK(); // release i2c bus access
     }
 #endif
